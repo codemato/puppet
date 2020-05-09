@@ -1,0 +1,10 @@
+---
+:backends:
+  - yaml
+:hierarchy:
+  - "nodes/%{::trusted.certname}"
+  - "%{facts.os.family}"
+  - common
+
+:yaml:
+  :datadir: /etc/puppetlabs/code/hieradata/%{environment}

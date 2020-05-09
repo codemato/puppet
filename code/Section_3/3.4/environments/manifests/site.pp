@@ -1,0 +1,3 @@
+node /agent/ {
+	include testrepo
+}

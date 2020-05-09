@@ -1,0 +1,29 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: puppet_apply
+  manifests_path: manifests
+  modules_path: modules
+  require_puppet_collections: true
+  require_puppet_repo: false
+  require_chef_for_busser: false
+
+platforms:
+  - name: ubuntu-16.04
+    driver_plugin: vagrant
+    driver_config:
+      box: puppetlabs/ubuntu-16.04-64-nocm
+  - name: centos-7.2
+    driver_plugin: vagrant
+    driver_config:
+      box: puppetlabs/centos-7.2-64-nocm
+
+verifier:
+  ruby_bindir: '/opt/puppetlabs/puppet/bin'
+
+suites:
+  - name: default
+    provisioner:
+      manifest: site.pp

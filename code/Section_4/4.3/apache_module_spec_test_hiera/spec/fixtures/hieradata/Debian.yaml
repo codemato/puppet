@@ -1,0 +1,8 @@
+---
+apache:
+  packagename: 'apache2'
+  configsource: 'puppet:///modules/apache/apache2.conf'
+  configfile: '/etc/apache2/apache2.conf'
+  vhostsource: 'apache/vhost.conf.erb'
+  vhostfile: '/etc/apache2/sites-enabled/vhost.conf'
+  servicename: 'apache2'

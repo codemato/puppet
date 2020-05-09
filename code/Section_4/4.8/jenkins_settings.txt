@@ -1,0 +1,4 @@
+refspec for main repo => +refs/heads/*:refs/remotes/origin/* +refs/merge-requests/*/head:refs/remotes/origin/merge-requests/*
+git url for developer repo => ${gitlabSourceRepoURL}
+name for developer repo => ${gitlabSourceRepoName}
+branch for main repo => merge-requests/${gitlabMergeRequestIid}

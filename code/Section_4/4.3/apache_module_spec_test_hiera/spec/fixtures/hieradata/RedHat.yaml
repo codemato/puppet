@@ -1,0 +1,8 @@
+---
+apache:
+  packagename: 'httpd'
+  configsource: 'puppet:///modules/apache/httpd.conf'
+  configfile: '/etc/httpd/conf/httpd.conf'
+  vhostsource: 'apache/vhost.conf.erb'
+  vhostfile: '/etc/httpd/conf.d/vhost.conf'
+  servicename: 'httpd'
