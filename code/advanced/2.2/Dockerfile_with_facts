@@ -1,0 +1,13 @@
+FROM centos:7
+
+RUN rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm && \
+    yum install -y puppet-agent && \
+    yum clean all && \
+    mkdir -p /etc/puppetlabs/facter/facts.d
+
+COPY facts.txt /etc/puppetlabs/facter/facts.d/
+
+ENV PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
+
+ENTRYPOINT ["/opt/puppetlabs/bin/puppet"]
+CMD ["agent", "--verbose", "--no-daemonize", "--summarize" ]

@@ -1,0 +1,4 @@
+cmd: "/usr/sbin/httpd,-DFOREGROUND"
+expose: 80
+image_name: extendingpuppet/apacheserver_module
+from: centos:7

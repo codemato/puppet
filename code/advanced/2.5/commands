@@ -1,0 +1,6 @@
+cp /etc/puppetlabs/puppet/ssl/certs/mcollective-servers.pem . && cp /etc/puppetlabs/puppet/ssl/private_keys/mcollective-servers.pem mcollective-servers.key.pem && mkdir clients && cp /etc/puppetlabs/puppet/ssl/certs/admin.pem clients/ && chmod 644 mcollective-servers.key.pem
+
+keytool -import -alias "Puppet CA" -file /tmp/ca.pem -keystore /tmp/truststore.jks
+cat /tmp/activemq.key.pem /tmp/activemq.pem > /tmp/temp.pem
+openssl pkcs12 -export -in /tmp/temp.pem -out /tmp/activemq.p12 -name activemq
+keytool -importkeystore -destkeystore /tmp/keystore.jks -srckeystore /tmp/activemq.p12 -srcstoretype PKCS12 -alias activemq

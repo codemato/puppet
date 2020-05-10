@@ -1,0 +1,11 @@
+puppet query 'nodes { certname ~ "client" }'
+puppet query 'inventory { facts.networking.interfaces.eth1.ip ~ "192.168.33.1" }'
+puppet query 'inventory { facts.networking.interfaces.eth1.ip ~ "192.168.33.1" }' | jq .[].certname
+puppet query 'inventory[certname] { facts.networking.interfaces.eth1.ip ~ "192.168.33.1" }'
+puppet query 'inventory[certname] { facts.networking.interfaces.eth1.ip ~ "192.168.33.1" }' | jq -r .[].certname
+puppet query 'inventory[certname] { facts.networking.interfaces.eth1.ip ~ "192.168.33.1"  and facts.fqdn ~ "nagios" }'
+
+curl -X POST http://puppetdb.local:8080/pdb/query/v4/nodes -H 'Content-Type:application/json' -d '{"query":["~","certname","client"]}'
+curl -X POST http://puppetdb.local:8080/pdb/query/v4/nodes -H 'Content-Type:application/json' -d '{"query":["~","certname","client"]}' | jq .[]
+curl -X POST http://puppetdb.local:8080/pdb/query/v4/nodes -H 'Content-Type:application/json' -d '{"query":["~","certname","client"]}' | jq .[].certname
+curl -X POST http://puppetdb.local:8080/pdb/query/v4/nodes -H 'Content-Type:application/json' -d '{"query":["~","certname","client"]}' | jq -r .[].certname
