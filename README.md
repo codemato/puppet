@@ -1,1 +1,1 @@
-"# puppet" 
+PUPPET DSL Code Examples
